@@ -1,5 +1,5 @@
 "use strict"
-angular.module('savingcalculatorApp')
+angular.module('healthcheckerApp')
     .factory('diagramFactory', function MainFactory($http, $q, $log) {
         return {
             getFinancialData: function() {

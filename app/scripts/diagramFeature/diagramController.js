@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name savingcalculatorApp.controller:MainCtrl
+ * @name healthcheckerApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the savingcalculatorApp
+ * Controller of the healthcheckerApp
  */
 
-angular.module('savingcalculatorApp')
+angular.module('healthcheckerApp')
   .controller('DiagramCtrl', function($scope, $log, diagramFactory) {
     function initDiagram() {
       $scope.datapoints = [];

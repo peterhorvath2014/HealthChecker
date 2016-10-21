@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name savingcalculatorApp
+ * @name healthcheckerApp
  * @description
- * # savingcalculatorApp
+ * # healthcheckerApp
  *
  * Main module of the application.
  */
 angular
-  .module('savingcalculatorApp', [
+  .module('healthcheckerApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',

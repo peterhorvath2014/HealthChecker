@@ -1,5 +1,5 @@
 "use strict"
-angular.module('savingcalculatorApp')
+angular.module('healthcheckerApp')
     .directive('buttonsRadio', function($log) {
         return {
             restrict: 'E',
