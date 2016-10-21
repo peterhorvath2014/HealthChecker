@@ -1,10 +1,10 @@
 "use strict"
 angular.module('healthcheckerApp')
-    .factory('diagramFactory', function MainFactory($http, $q, $log) {
+    .factory('appFctr', function MainFactory($http, $q, $log) {
         return {
-            getFinancialData: function() {
+            getData: function() {
                 return $http({
-                    url: 'https://api.mongolab.com/api/1/databases/savings/collections/financialdata',
+                    url: 'https://api.mongolab.com/api/1/databases/healthchecker/collections/dailydata',
                     method: 'GET',
                     params: {
                         'apiKey': 'rLXW_SYqupDY0XvVv50ge8CVYUgrsMRZ'
@@ -25,12 +25,12 @@ angular.module('healthcheckerApp')
                         return $q.reject(response.data);
                     });
             },
-            insertNewFinancialData: function(financialData) {
+            insertNewData: function(data) {
                 return $http({
-                    url: 'https://api.mongolab.com/api/1/databases/savings/collections/financialdata',
+                    url: 'https://api.mongolab.com/api/1/databases/healthchecker/collections/dailydata',
                     method: 'POST',
                     data: {
-                        financialData: financialData
+                        data: data
                     },
                     params: {
                         'apiKey': 'rLXW_SYqupDY0XvVv50ge8CVYUgrsMRZ'
@@ -51,10 +51,10 @@ angular.module('healthcheckerApp')
                         return $q.reject(response.data);
                     });
             },
-            deleteFinancialData: function(id) {
+            deleteData: function(id) {
                 $log.debug(id);
                 return $http({
-                    url: 'https://api.mongolab.com/api/1/databases/savings/collections/financialdata/' + id.$oid,
+                    url: 'https://api.mongolab.com/api/1/databases/healthchecker/collections/dailydata/' + id.$oid,
                     method: 'DELETE',
                     params: {
                         'apiKey': 'rLXW_SYqupDY0XvVv50ge8CVYUgrsMRZ'
@@ -75,13 +75,13 @@ angular.module('healthcheckerApp')
                         return $q.reject(response.data);
                     });
             },
-            updateFinancialData: function(financialData, id) {
-                $log.debug(financialData._id);
+            updateData: function(data, id) {
+                $log.debug(data._id);
                 return $http({
-                    url: 'https://api.mongolab.com/api/1/databases/savings/collections/financialdata/' + id.$oid,
+                    url: 'https://api.mongolab.com/api/1/databases/healthchecker/collections/dailydata/' + id.$oid,
                     method: 'PUT',
                     data: {
-                        financialData: financialData
+                        data: data
                     },
                     params: {
                         'apiKey': 'rLXW_SYqupDY0XvVv50ge8CVYUgrsMRZ'

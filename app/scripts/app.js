@@ -24,9 +24,9 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'scripts/diagramFeature/diagramView.html',
-        controller: 'DiagramCtrl',
-        controllerAs: 'diagram'
+        templateUrl: 'scripts/mvc/view.html',
+        controller: 'AppCtrl',
+        controllerAs: 'appctrl'
       })
       .otherwise({
         redirectTo: '/'

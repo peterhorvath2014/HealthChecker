@@ -9,26 +9,7 @@
  */
 
 angular.module('healthcheckerApp')
-  .controller('DiagramCtrl', function($scope, $log, diagramFactory) {
-    function initDiagram() {
-      $scope.datapoints = [];
-      $scope.datacolumns = [{
-        "id": "income",
-        "type": "bar",
-        "name": "Income",
-        "color": "lightgreen"
-      }, {
-        "id": "expense",
-        "type": "bar",
-        "name": "Expense",
-        "color": "#FF0099"
-      }, {
-        "id": "balance",
-        "type": "line",
-        "name": "Balance",
-        "color": "#660033"
-      }];
-    };
+  .controller('AppCtrl', function($scope, $log, appFctr) {
 
     function initDatePicker() {
       $scope.today = function() {
@@ -126,23 +107,19 @@ angular.module('healthcheckerApp')
     }
 
     function init() {
-      initFinancialDataForm();
-      initDatePicker();
-      initDiagram();
     }
     init();
 
     function refreshDataPoints() {
-      var promise = diagramFactory.getFinancialData();
+      var promise = appFctr.getData();
       promise.then(function(data) {
-        $scope.financialDataFromDb = angular.copy(data);
-        $scope.datapoints = convertFinancialDataToDatapoint(data);
+        $scope.dailydata = angular.copy(data);
       }, function(error) {});
     }
     refreshDataPoints();
 
     $scope.removeFinancialDataFromDb = function(id) {
-      var promise = diagramFactory.deleteFinancialData(id);
+      var promise = appFctr.deleteFinancialData(id);
       promise.then(function(data) {
         refreshDataPoints();
       }, function(error) {
@@ -153,10 +130,10 @@ angular.module('healthcheckerApp')
     $scope.saveFinancialData = function() {
       var promise;
       if ($scope._id) {
-        promise = diagramFactory.updateFinancialData($scope.financialData, $scope._id);
+        promise = appFctr.updateFinancialData($scope.financialData, $scope._id);
       }
       else {
-        promise = diagramFactory.insertNewFinancialData($scope.financialData);
+        promise = appFctr.insertNewFinancialData($scope.financialData);
       }
       promise.then(function(data) {
         resetForm();
@@ -180,7 +157,7 @@ angular.module('healthcheckerApp')
         else {
           financialDataWrapper.financialData.show = true;
         }
-        promise = diagramFactory.updateFinancialData(financialDataWrapper.financialData, financialDataWrapper._id);
+        promise = appFctr.updateFinancialData(financialDataWrapper.financialData, financialDataWrapper._id);
       }
       promise.then(function(data) {
         resetForm();
