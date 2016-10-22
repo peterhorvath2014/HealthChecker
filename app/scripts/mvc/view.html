@@ -1,4 +1,4 @@
-<c3chart bindto-id="chart" show-labels="false" enable-zoom="true" chart-data="datapoints" chart-columns="datacolumns">
+<!-- <c3chart bindto-id="chart" show-labels="false" enable-zoom="true" chart-data="datapoints" chart-columns="datacolumns">
 
   <chart-grid show-x="false" show-y="true">
     <chart-grid-optional axis-id="y" grid-value="0" />
@@ -138,10 +138,26 @@
 </div>
 </div>
 </div>
+-->
+<div class="row" ng-show="true">
+  <div class="col-lg-12">
+    <div ng-repeat="(key, value) in dailydata">
+      <spin ng-switch on="key">
+      <span ng-switch-when="_id"></span>
+      <span ng-switch-when="user"><!--Welcome {{value}}--></span>
+      <span ng-switch-when="date">{{dailydata.date | date:'yyyy-MM'}}</span>
+      <span ng-switch-default>
+        {{key}}: {{value}} 
+      </span>
+    </div>
+    
+  </div>
+</div>
+
 
 <div class="row" ng-show="true">
   <div class="col-lg-12">
-    <h3>Debug from DB</h3>
-    <pre>{{dailydata | json}}</pre>
+    <pre>dailydata:
+{{dailydata | json}}</pre>
   </div>
 </div>

@@ -2,9 +2,9 @@
 angular.module('healthcheckerApp')
     .factory('appFctr', function MainFactory($http, $q, $log) {
         return {
-            getData: function() {
+            getData: function(dataName) {
                 return $http({
-                    url: 'https://api.mongolab.com/api/1/databases/healthchecker/collections/dailydata',
+                    url: 'https://api.mongolab.com/api/1/databases/healthchecker/collections/' + dataName,
                     method: 'GET',
                     params: {
                         'apiKey': 'rLXW_SYqupDY0XvVv50ge8CVYUgrsMRZ'

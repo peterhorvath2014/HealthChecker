@@ -9,9 +9,9 @@
  */
 
 angular.module('healthcheckerApp')
-  .controller('AppCtrl', function($scope, $log, appFctr) {
+  .controller('AppCtrl', ['$scope', '$log', '$parse', 'appFctr', function($scope, $log, $parse, appFctr) {
 
-    function initDatePicker() {
+  /*  function initDatePicker() {
       $scope.today = function() {
         $scope.financialData.targetDateFrom = new Date();
         $scope.financialData.targetDateTo = new Date();
@@ -102,22 +102,22 @@ angular.module('healthcheckerApp')
         "reoccurringType": $scope.financialDataReoccurringTypes[0].name,
       };
       /*$scope.incomeDataType = {"financialData" : {"type":"Income"}};
-      $scope.expenseDataType = {"financialData" : {"type":"Expense"}};*/
+      $scope.expenseDataType = {"financialData" : {"type":"Expense"}};*//*
       resetForm();
     }
 
     function init() {
     }
     init();
-
-    function refreshDataPoints() {
-      var promise = appFctr.getData();
+*/
+    function putFreshDataToScope(dataName) {
+      var promise = appFctr.getData(dataName);
       promise.then(function(data) {
-        $scope.dailydata = angular.copy(data);
+        $parse(dataName).assign($scope, angular.copy(data[0]));
       }, function(error) {});
     }
-    refreshDataPoints();
-
+    putFreshDataToScope('dailydata');
+/*
     $scope.removeFinancialDataFromDb = function(id) {
       var promise = appFctr.deleteFinancialData(id);
       promise.then(function(data) {
@@ -304,5 +304,5 @@ angular.module('healthcheckerApp')
         result.push(actualPush);
       }
       return result;
-    };
-  });
+    };*/
+  }]);
